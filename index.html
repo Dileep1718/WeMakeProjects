@@ -24,8 +24,8 @@
     {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "WeMakeProjects Studio",
-      "url": "https://projectMakeProjects.studio/",
+      "name": "ProjectForge Studio",
+      "url": "https://projectforge.studio/",
       "logo": "https://projectforge.studio/logo.png",
       "contactPoint": { "@type": "ContactPoint", "contactType": "customer support", "email": "contact@projectforge.studio" },
       "sameAs": []
@@ -72,14 +72,14 @@
         }
         
         h1, h2, h3 { font-weight: 800; line-height: 1.2; letter-spacing: -0.025em; }
-        h1 { font-size: clamp(3rem, 7vw, 4.5rem); }
-        h2 { font-size: clamp(2.2rem, 5vw, 3rem); margin-bottom: calc(var(--spacing-unit) * 4); }
+        h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); }
+        h2 { font-size: clamp(2rem, 7vw, 3rem); margin-bottom: calc(var(--spacing-unit) * 4); }
         p { color: var(--text-secondary); margin-bottom: calc(var(--spacing-unit) * 2); max-width: 65ch; }
         a { color: var(--accent-color); text-decoration: none; transition: color 150ms; }
         a:hover { color: var(--accent-color-hover); }
         
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 calc(var(--spacing-unit) * 2); }
-        .section { padding: calc(var(--spacing-unit) * 14) 0; position: relative; overflow-x: hidden; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 calc(var(--spacing-unit) * 3); }
+        .section { padding: calc(var(--spacing-unit) * 12) 0; position: relative; overflow-x: hidden; }
         .section-title, .section-subtext {
             opacity: 0;
             animation: fade-in-up 0.8s ease-out forwards;
@@ -100,28 +100,28 @@
         header.scrolled { box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-bottom: 1px solid var(--border-color); }
         .header-content { display: flex; justify-content: space-between; align-items: center; height: 72px; }
         .logo { font-weight: 800; font-size: 1.3rem; color: var(--text-primary); }
-        .nav a { position: relative; font-weight: 500; font-size: 1rem; color: var(--text-secondary); margin-left: calc(var(--spacing-unit) * 5); transition: color 150ms; }
-        .nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 50%; background-color: var(--accent-color); transition: all 250ms ease-in-out; }
-        .nav a:hover { color: var(--text-primary); }
-        .nav a:hover::after { width: 100%; left: 0; }
+        .nav-desktop { display: none; }
+        .nav-mobile { display: block; }
+        .nav-toggle { background: none; border: none; cursor: pointer; z-index: 1001; }
+        .nav-toggle .icon-bar { display: block; width: 25px; height: 3px; background-color: var(--text-primary); margin: 5px 0; transition: all 0.3s; }
+        .nav-menu { position: fixed; top: 72px; left: 0; right: 0; background-color: var(--bg-primary); list-style: none; padding: 2rem; text-align: center; transform: translateY(-120%); transition: transform 0.3s ease-in-out; }
+        .nav-menu.is-open { transform: translateY(0); }
+        .nav-menu li { margin-bottom: 1.5rem; }
+        .nav-menu a { font-size: 1.2rem; font-weight: 700; color: var(--text-primary); }
 
-        .hero { text-align: center; padding: calc(var(--spacing-unit) * 12) 0; position: relative; }
+        .hero { text-align: center; padding: calc(var(--spacing-unit) * 10) 0; position: relative; }
         .hero h1 { opacity: 1; }
-        .hero .subheadline { font-size: 1.3rem; max-width: 65ch; margin: calc(var(--spacing-unit) * 3) auto calc(var(--spacing-unit) * 5); opacity: 0; animation: fade-in-up 0.8s ease-out 0.8s forwards; }
+        .hero .subheadline { font-size: 1.2rem; max-width: 65ch; margin: calc(var(--spacing-unit) * 3) auto calc(var(--spacing-unit) * 5); opacity: 0; animation: fade-in-up 0.8s ease-out 0.8s forwards; }
         .hero .btn { opacity: 0; animation: fade-in-up 0.8s ease-out 1s forwards; }
         .hero-spotlight {
-            position: absolute;
-            top: 0; left: 0;
+            position: absolute; top: 0; left: 0;
             width: 200px; height: 200px;
             background: radial-gradient(circle, rgba(var(--accent-rgb), 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transition: transform 0.1s ease-out;
-            z-index: -1;
+            border-radius: 50%; pointer-events: none; transition: transform 0.1s ease-out; z-index: -1;
         }
 
         .trust-row { background-color: var(--bg-secondary); padding: calc(var(--spacing-unit) * 2.5) 0; }
-        .trust-items { display: flex; justify-content: center; flex-wrap: wrap; gap: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 5); font-weight: 500; color: var(--text-secondary); }
+        .trust-items { display: flex; justify-content: center; flex-wrap: wrap; gap: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 4); font-weight: 500; color: var(--text-secondary); }
         
         #work { background-color: var(--bg-secondary); }
         .project-filters { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--spacing-unit); margin-bottom: calc(var(--spacing-unit) * 6); }
@@ -132,35 +132,43 @@
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: calc(var(--spacing-unit) * 4); perspective: 1000px; }
         .project-card { background: var(--bg-primary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); padding: calc(var(--spacing-unit) * 3); transition: all 300ms; opacity: 0; transform: translateY(30px); }
         .project-card.animate { animation: fade-in-up 0.6s ease-out forwards; }
-        .project-card:hover { transform: translateY(-8px) rotateX(5deg) rotateY(-5deg) scale(1.03); box-shadow: 0 15px 30px rgba(0,0,0,0.12); border-color: rgba(var(--accent-rgb), 0.5); }
+        .project-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 30px rgba(0,0,0,0.12); border-color: rgba(var(--accent-rgb), 0.5); }
         .project-card h3 { font-size: 1.3rem; margin-bottom: var(--spacing-unit); color: var(--text-primary); }
         .project-card .outcome { font-size: 1rem; color: var(--accent-color); margin-bottom: calc(var(--spacing-unit) * 2); font-weight: 500; }
         .project-card .tags { display: flex; gap: var(--spacing-unit); flex-wrap: wrap; }
         .project-card .tag { background-color: #e9ecef; font-size: 0.8rem; padding: 5px 12px; border-radius: 99px; color: var(--text-secondary); font-weight: 500; }
 
         .process-timeline { max-width: 800px; margin: 0 auto; position: relative; }
-        .process-timeline::after { content: ''; position: absolute; width: 3px; background-color: var(--border-color); top: 0; bottom: 0; left: 50%; margin-left: -1.5px; }
-        .process-item { padding: 10px 40px; position: relative; width: 50%; opacity: 0; }
-        .process-item.animate.left { animation: slide-in-left 0.8s ease-out forwards; }
-        .process-item.animate.right { animation: slide-in-right 0.8s ease-out forwards; }
-        .process-item::after { content: ''; position: absolute; width: 25px; height: 25px; right: -12.5px; background-color: var(--bg-primary); border: 4px solid var(--accent-color); top: 15px; border-radius: 50%; z-index: 1; transition: transform 0.3s; }
-        .process-item.animate::after { transform: scale(1); }
-        .process-item.left { left: 0; }
-        .process-item.right { left: 50%; }
-        .process-item.left::before { content: " "; height: 0; position: absolute; top: 22px; width: 0; z-index: 1; right: 30px; border: medium solid var(--border-color); border-width: 10px 0 10px 10px; border-color: transparent transparent transparent var(--border-color); }
-        .process-item.right::before { content: " "; height: 0; position: absolute; top: 22px; width: 0; z-index: 1; left: 30px; border: medium solid var(--border-color); border-width: 10px 10px 10px 0; border-color: transparent var(--border-color) transparent transparent; }
-        .process-content { padding: 20px 30px; background-color: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-md); }
-        .process-content h3 { color: var(--accent-color); }
+        .process-item { padding: 20px 0; position: relative; width: 100%; opacity: 0; }
+        .process-item.animate { animation: fade-in-up 0.8s ease-out forwards; }
+        .process-content { padding: 20px; background-color: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-md); position: relative; }
+        .process-content h3 { color: var(--accent-color); margin-bottom: 1rem; }
+        .process-item::before { content: attr(data-step); position: absolute; left: -25px; top: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--accent-color); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; border: 4px solid var(--bg-secondary); }
+        .process-timeline::before { content: ''; position: absolute; width: 3px; background-color: var(--border-color); top: 20px; bottom: 20px; left: 0; }
+        .process-timeline { padding-left: 50px; }
 
-        #testimonials { background-color: var(--bg-secondary); }
-        .testimonial-card { background: transparent; border: none; text-align: center; }
-        .testimonial-card blockquote { font-size: 1.5rem; font-weight: 500; color: var(--text-primary); margin-bottom: calc(var(--spacing-unit) * 3); }
+        #reviews { background-color: var(--bg-secondary); }
+        .testimonial-card { background: transparent; border: none; text-align: center; margin-bottom: 4rem; }
+        .testimonial-card blockquote { font-size: 1.3rem; font-weight: 500; color: var(--text-primary); margin-bottom: calc(var(--spacing-unit) * 3); }
         .testimonial-card cite { font-style: normal; font-weight: 700; color: var(--accent-color); }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: calc(var(--spacing-unit) * 3); }
+        .review-card { background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; }
+        .star-rating { color: #ffc107; margin-bottom: 1rem; }
+        .review-card p { font-style: italic; }
+        .review-card cite { font-style: normal; font-weight: 700; }
+        
+        .faq-item { border-bottom: 1px solid var(--border-color); }
+        .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 1.5rem 0; font-size: 1.1rem; font-weight: 700; color: var(--text-primary); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-icon { transition: transform 0.3s; font-size: 1.5rem; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .faq-answer p { padding: 0 0 1.5rem 0; }
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
+        .faq-item.active .faq-answer { max-height: 200px; }
 
         #training { background-color: var(--bg-secondary); }
         .training-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: calc(var(--spacing-unit) * 4); perspective: 1000px; }
         .training-card { background-color: var(--bg-primary); padding: calc(var(--spacing-unit) * 3); border-radius: var(--radius-lg); border: 1px solid var(--border-color); transition: transform 200ms, box-shadow 200ms, border-color 200ms; }
-        .training-card:hover { transform: translateY(-8px) rotateX(5deg) rotateY(-5deg) scale(1.03); box-shadow: 0 15px 30px rgba(0,0,0,0.12); border-color: rgba(var(--accent-rgb), 0.7); }
+        .training-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 30px rgba(0,0,0,0.12); border-color: rgba(var(--accent-rgb), 0.7); }
         .training-card svg { width: 32px; height: 32px; color: var(--accent-color); margin-bottom: var(--spacing-unit) * 2; }
         .training-card h3 { font-size: 1.2rem; margin-bottom: var(--spacing-unit); }
 
@@ -179,19 +187,52 @@
         .toast.success { background-color: #198754; }
         .toast.error { background-color: #dc3545; }
         .toast.info { background-color: #0dcaf0; }
+
+        @media (min-width: 768px) {
+            .nav-desktop { display: block; }
+            .nav-mobile { display: none; }
+            .process-timeline { padding-left: 0; }
+            .process-timeline::before { content: none; }
+            .process-item { padding: 10px 40px; }
+            .process-item::before { content: none; }
+            .process-item.left { left: 0; }
+            .process-item.right { left: 50%; }
+            .process-timeline::after { content: ''; position: absolute; width: 3px; background-color: var(--border-color); top: 20px; bottom: 20px; left: 50%; margin-left: -1.5px; }
+            .process-item.left::before { content: " "; height: 0; position: absolute; top: 22px; width: 0; z-index: 1; right: 30px; border: medium solid var(--border-color); border-width: 10px 0 10px 10px; border-color: transparent transparent transparent var(--border-color); }
+            .process-item.right::before { content: " "; height: 0; position: absolute; top: 22px; width: 0; z-index: 1; left: 30px; border: medium solid var(--border-color); border-width: 10px 10px 10px 0; border-color: transparent var(--border-color) transparent transparent; }
+            .project-card:hover { transform: translateY(-8px) rotateX(5deg) rotateY(-5deg) scale(1.03); }
+            .training-card:hover { transform: translateY(-8px) rotateX(5deg) rotateY(-5deg) scale(1.03); }
+        }
     </style>
 </head>
 <body>
 
     <header id="header">
         <div class="container header-content">
-            <a href="#" class="logo">WeMakeProjects Studio</a>
-            <nav class="nav" aria-label="Main">
+            <a href="#" class="logo">ProjectForge Studio</a>
+            <nav class="nav-desktop" aria-label="Main">
                 <a href="#work">Work</a>
                 <a href="#process">Process</a>
+                <a href="#reviews">Reviews</a>
                 <a href="#training">Training</a>
+                <a href="#faq">FAQ</a>
                 <a href="#contact">Contact</a>
             </nav>
+            <div class="nav-mobile">
+                <button class="nav-toggle" aria-label="Open navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="#work">Work</a></li>
+                    <li><a href="#process">Process</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#training">Training</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
         </div>
     </header>
 
@@ -231,19 +272,37 @@
             <div class="container">
                 <h2 class="section-title">Our Collaborative Process</h2>
                 <div class="process-timeline">
-                    <div class="process-item left"><div class="process-content"><h3>1. Discovery & Planning</h3><p>We start with a deep dive into your requirements, college guidelines, and learning goals to craft a perfect project plan.</p></div></div>
-                    <div class="process-item right"><div class="process-content"><h3>2. Agile Development</h3><p>Our team develops the project in sprints, providing you with regular updates, code walkthroughs, and feedback sessions.</p></div></div>
-                    <div class="process-item left"><div class="process-content"><h3>3. Mentorship & Learning</h3><p>Throughout the build, we mentor you on the technologies used, ensuring you can confidently explain every line of code.</p></div></div>
-                    <div class="process-item right"><div class="process-content"><h3>4. Delivery & Viva Prep</h3><p>We hand over the complete project with docs, PPT, and provide full support and mock sessions for your viva.</p></div></div>
+                    <div class="process-item left" data-step="1"><div class="process-content"><h3>Discovery & Planning</h3><p>We start with a deep dive into your requirements, college guidelines, and learning goals to craft a perfect project plan.</p></div></div>
+                    <div class="process-item right" data-step="2"><div class="process-content"><h3>Agile Development</h3><p>Our team develops the project in sprints, providing you with regular updates, code walkthroughs, and feedback sessions.</p></div></div>
+                    <div class="process-item left" data-step="3"><div class="process-content"><h3>Mentorship & Learning</h3><p>Throughout the build, we mentor you on the technologies used, ensuring you can confidently explain every line of code.</p></div></div>
+                    <div class="process-item right" data-step="4"><div class="process-content"><h3>Delivery & Viva Prep</h3><p>We hand over the complete project with docs, PPT, and provide full support and mock sessions for your viva.</p></div></div>
                 </div>
             </div>
         </section>
         
-        <section id="testimonials" class="section">
+        <section id="reviews" class="section">
             <div class="container">
+                <h2 class="section-title">What Our Students Say</h2>
                 <div class="testimonial-card">
                     <blockquote>"The mentorship was the best part. I didn't just get a project; I actually learned the technology behind it. Scored the highest in my class!"</blockquote>
                     <cite>— Priya S., SRM University</cite>
+                </div>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="star-rating">★★★★★</div>
+                        <p>"Flawless execution and delivery right on time. The documentation was perfect."</p>
+                        <cite>— Rohan K., VIT Vellore</cite>
+                    </div>
+                    <div class="review-card">
+                        <div class="star-rating">★★★★★</div>
+                        <p>"I was completely lost, and they helped me choose a great project and guided me through the entire process."</p>
+                        <cite>— Anjali M., Manipal University</cite>
+                    </div>
+                    <div class="review-card">
+                        <div class="star-rating">★★★★★</div>
+                        <p>"The viva support was a lifesaver. I went into my presentation with total confidence."</p>
+                        <cite>— Sameer P., RVCE Bangalore</cite>
+                    </div>
                 </div>
             </div>
         </section>
@@ -279,6 +338,30 @@
                 </div>
             </div>
         </section>
+
+        <section id="faq" class="section">
+            <div class="container" style="max-width: 800px;">
+                <h2 class="section-title">Common Questions</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question">How long does a project take?<span class="faq-icon">+</span></button>
+                        <div class="faq-answer"><p>Standard projects are typically delivered within 2-4 weeks. Complex projects may take longer, but we always agree on a timeline with you upfront.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">What if I don't have a project idea?<span class="faq-icon">+</span></button>
+                        <div class="faq-answer"><p>No problem! That's very common. Based on your branch, interests, and college requirements, we'll suggest a list of high-impact, trending project ideas for you to choose from.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">What is the cost?<span class="faq-icon">+</span></button>
+                        <div class="faq-answer"><p>Pricing varies based on project complexity. Fill out the contact form, and we'll provide a no-obligation quote within 24 hours. We offer flexible payment options for students.</p></div>
+                    </div>
+                     <div class="faq-item">
+                        <button class="faq-question">What do I get in the final delivery?<span class="faq-icon">+</span></button>
+                        <div class="faq-answer"><p>You receive the complete source code, a detailed project report (docs), a presentation (PPT), a video demonstration, and full support for your viva voce exam.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer id="contact" class="section">
@@ -311,14 +394,20 @@
 
         const projectsData = [
             { title: "Smart City Waste Bin", outcome: "“Cut collection trips by 32%”", tags: ["IoT", "ESP32", "Cloud"], category: "iot" },
-            { title: "Stock Auto-Trader", outcome: "“Backtested +12% vs baseline”", tags: ["Python", "AI/ML"], category: "ml" },
-            { title: "Smart Irrigation System", outcome: "“Reduced water usage by 40%”", tags: ["Arduino", "Soil Moisture"], category: "iot" },
-            { title: "Smart Door Unlock", outcome: "“Latency under 300ms”", tags: ["Vision", "Edge AI"], category: "ml iot" },
-            { title: "Live Tutoring Platform", outcome: "“Supported 50+ concurrent users”", tags: ["WebRTC", "Node.js"], category: "web" },
+            { title: "Stock Price Predictor", outcome: "“Achieved 85% directional accuracy”", tags: ["LSTM", "AI/ML"], category: "ml" },
+            { title: "Smart Irrigation System", outcome: "“Reduced water usage by 40%”", tags: ["Arduino", "Sensors"], category: "iot" },
+            { title: "Facial Recognition Lock", outcome: "“Latency under 300ms”", tags: ["Vision", "Edge AI"], category: "ml iot" },
+            { title: "E-commerce Platform", outcome: "“Full-featured with payment gateway”", tags: ["React", "Node.js"], category: "web" },
+            { title: "Sentiment Analysis Tool", outcome: "“Analyzed social media trends”", tags: ["NLP", "Python"], category: "ml" },
+            { title: "Home Automation System", outcome: "“Control lights & fans remotely”", tags: ["IoT", "Blynk"], category: "iot" },
+            { title: "Live Tutoring Platform", outcome: "“Supported 50+ concurrent users”", tags: ["WebRTC", "Socket.io"], category: "web" },
             { title: "Crop Disease Detection", outcome: "“Achieved 95% accuracy”", tags: ["CNN", "TensorFlow"], category: "ml" },
-            { title: "Aquarium pH Control", outcome: "“Auto-maintains pH 6.8–7.2”", tags: ["NodeMCU", "Sensors"], category: "iot" },
+            { title: "Aquarium pH Control", outcome: "“Auto-maintains pH 6.8–7.2”", tags: ["NodeMCU", "Automation"], category: "iot" },
             { title: "Placement Match Portal", outcome: "“Match rate +28%”", tags: ["Web", "Database"], category: "web" },
-            { title: "Biogas Monitor", outcome: "“Threshold alerts + cloud log”", tags: ["Sensors", "Alerts"], category: "iot" }
+            { title: "Biogas Monitor", outcome: "“Threshold alerts + cloud log”", tags: ["Sensors", "Alerts"], category: "iot" },
+            { title: "Movie Recommendation Engine", outcome: "“Personalized user suggestions”", tags: ["AI/ML", "Collaborative Filtering"], category: "ml" },
+            { title: "Portfolio Builder App", outcome: "“Create and deploy a personal site”", tags: ["Web", "JavaScript"], category: "web" },
+            { title: "GPS Asset Tracker", outcome: "“Real-time location monitoring”", tags: ["IoT", "GPS Module"], category: "iot" }
         ];
 
         const projectsGrid = document.getElementById('projects-grid-container');
@@ -377,7 +466,7 @@
             spotlight.style.transform = `translate(${e.clientX - rect.left - spotlight.offsetWidth / 2}px, ${e.clientY - rect.top - spotlight.offsetHeight / 2}px)`;
         });
 
-        const animatedElements = document.querySelectorAll('.section-title, .section-subtext, .process-item');
+        const animatedElements = document.querySelectorAll('.section-title, .section-subtext, .process-item, .review-card, .training-card, .faq-item');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -397,6 +486,23 @@
             filterContainer.querySelector('.active').classList.remove('active');
             e.target.classList.add('active');
             renderProjects(filter);
+        });
+        
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('is-open');
+        });
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => navMenu.classList.remove('is-open'));
+        });
+        
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
         });
 
         renderProjects();
@@ -519,10 +625,11 @@
             try {
                 const response = await fetch(CONFIG.GOOGLE_SHEET_URL, {
                     method: 'POST',
-                    mode: 'no-cors', // This mode is crucial for sending data to Google Apps Script from a browser
+                    mode: 'no-cors',
                     body: JSON.stringify(data),
+                    headers: { "Content-Type": "text/plain;charset=utf-8" }
                 });
-                console.log("Data sent to Google Sheet proxy. Since this is a no-cors request, we cannot see the response, but we assume it was successful.");
+                console.log("Data sent to Google Sheet proxy.");
                 return true;
             } catch (error) { 
                 console.error("Fetch error:", error);
